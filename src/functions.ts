@@ -57,8 +57,8 @@ const createMovies = async( request:Request, response: Response): Promise<Respon
 }
 
 const readMovies = async(request: Request, response: Response): Promise<Response> => {
-
-    let page = Number(request.query.page) | 1
+    try {
+        let page = Number(request.query.page) | 1
     let perPage = Number(request.query.perPage) | 5
 
     if( perPage > 5){
@@ -89,7 +89,7 @@ const readMovies = async(request: Request, response: Response): Promise<Response
     const indexLast: number = queryResult.rows.length -1
     const dataLast = queryResult.rows[indexLast].id
 
-    
+
     if(page <= 1){
         prevPage = "null"
     }
@@ -116,6 +116,11 @@ const readMovies = async(request: Request, response: Response): Promise<Response
     }
    
     return response.status(200).json(pagination)
+        
+    } catch (error: unknown) {
+        return response.status(404).json({message: 
+            "Page has no movies"})
+    }
 }
 
 const retrieveMovies = async(request: Request, response:Response): Promise<Response> => {
