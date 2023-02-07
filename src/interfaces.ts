@@ -14,4 +14,5 @@ interface iMovies extends iMoviesRequest {
 }
 
 type MoviesResult = QueryResult<iMovies> 
+
 export {iMoviesRequest, iMovies, MoviesResult, MoviesRequirendKeys}

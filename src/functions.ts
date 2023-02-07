@@ -1,4 +1,4 @@
-import { Request, Response } from "express"
+import { query, Request, Response } from "express"
 import { QueryConfig } from "pg"
 import format from "pg-format"
 import { client } from "./database"
